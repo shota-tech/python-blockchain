@@ -1,4 +1,4 @@
-# ブロックチェーン (Python)
+# ブロックチェーン実装 (Python)
 
 ## 概要
 - ブロックチェーンの学習用プロジェクト。
@@ -58,6 +58,9 @@ curl -X POST -H "Content-Type: application/json" -d '{
 curl "http://localhost:5001/mine"
 curl "http://localhost:5001/mine"
 curl "http://localhost:5001/mine"
+
+# サーバー2のチェーンを確認する。
+curl "http://localhost:5000/chain"
 
 # サーバー1のチェーンをサーバー2のチェーンに置き換える(コンセンサス)。
 curl "http://localhost:5000/nodes/resolve"
