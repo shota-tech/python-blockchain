@@ -2,17 +2,14 @@
 
 Blockchain implementation using Python.
 
-
 ## What I learned
 - How to implement blockchain.
 - What is Proof of Work.
 - How to use Flask.
 
-
 ## Prerequisites
 - python3
 - pipenv
-
 
 ## How to start nodes
 1. Install dependencies.
@@ -32,7 +29,6 @@ Blockchain implementation using Python.
    pipenv shell
    python3 -m server 5001
    ```
-
 
 ## Usage
 ```sh
@@ -68,7 +64,6 @@ curl "http://localhost:5000/nodes/resolve"
 # Get the blockchain of node 1. 
 curl "http://localhost:5000/chain"
 ```
-
 
 ## References
 - https://hackernoon.com/learn-blockchains-by-building-one-117428612f46
