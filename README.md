@@ -1,70 +1,75 @@
-# ブロックチェーン実装 (Python)
+# Python Blockchain
 
-## 概要
-- ブロックチェーンの学習用プロジェクト。
+Blockchain implementation using Python.
 
-## 学んだこと
-- ブロックチェーン及び Proof of Work の仕組み。
-- ブロックチェーンの実装方法。
-- Flask の使い方。
 
-## 参考資料
-- https://hackernoon.com/learn-blockchains-by-building-one-117428612f46
-- https://qiita.com/hidehiro98/items/841ece65d896aeaa8a2a
+## What I learned
+- How to implement blockchain.
+- What is Proof of Work.
+- How to use Flask.
 
-## 環境構築手順
-1. python3 系と pipenv をインストールする。
-2. 必要なライブラリをインポートする。
+
+## Prerequisites
+- python3
+- pipenv
+
+
+## How to start nodes
+1. Install dependencies.
    ```sh
    pipenv install
    ```
-
-## サーバー起動手順
-1. 仮想環境を起動する。
+2. Activate virtualenv.
    ```sh
    pipenv shell
    ```
-2. サーバー1を起動する。
+3. Start node 1.
    ```sh
    python3 -m server 5000
    ```
-3. 別ターミナルでサーバー2を起動する。
+4. Start node 2 on a different port in a different window.
    ```sh
    pipenv shell
    python3 -m server 5001
    ```
 
-## 使い方
+
+## Usage
 ```sh
-# トランザクションを生成する。
+# Create a new transaction.
 curl -X POST -H "Content-Type: application/json" -d '{
  "sender": "d4ee26eee15148ee92c6cd394edd974e",
  "recipient": "someone-other-address",
  "amount": 5
 }' "http://localhost:5000/transactions/new"
 
-# マイニングを実行する。
+# Mine a new block.
 curl "http://localhost:5000/mine"
 
-# チェーンを確認する。
+# Get the blockchain.
 curl "http://localhost:5000/chain"
 
-# サーバー1にサーバー2を登録する。
+# Register node 2 on node 1.
 curl -X POST -H "Content-Type: application/json" -d '{
    "nodes": ["http://localhost:5001"]
 }' "http://localhost:5000/nodes/register"
 
-# サーバー2でマイニングを実行する。
+# Mine some new blocks on node 2.
 curl "http://localhost:5001/mine"
 curl "http://localhost:5001/mine"
 curl "http://localhost:5001/mine"
 
-# サーバー2のチェーンを確認する。
+# Get the blockchain of node 2.
 curl "http://localhost:5000/chain"
 
-# サーバー1のチェーンをサーバー2のチェーンに置き換える(コンセンサス)。
+# Replace the blockchain of node 1 with that of node 2 by the Consensus Algorithm.
 curl "http://localhost:5000/nodes/resolve"
 
-# サーバー1のチェーンがサーバー2のチェーンに置き換わっていることを確認する。
+# Get the blockchain of node 1. 
 curl "http://localhost:5000/chain"
 ```
+
+
+## References
+- https://hackernoon.com/learn-blockchains-by-building-one-117428612f46
+- https://qiita.com/hidehiro98/items/841ece65d896aeaa8a2a

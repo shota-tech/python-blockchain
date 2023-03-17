@@ -19,7 +19,7 @@ def register_node():
         blockchain.register_node(node)
 
     response = {
-        'message': '新しいノードが追加されました',
+        'message': 'New nodes have been added',
         'total_nodes': list(blockchain.nodes),
     }
     return jsonify(response), 201
@@ -30,12 +30,12 @@ def consensus():
     replaced = blockchain.resolve_conflicts()
     if replaced:
         response = {
-            'message': 'チェーンが置き換えられました',
+            'message': 'Our chain was replaced',
             'new_chain': blockchain.chain
         }
     else:
         response = {
-            'message': 'チェーンが確認されました',
+            'message': 'Our chain was replaced',
             'chain': blockchain.chain
         }
 
@@ -52,7 +52,7 @@ def new_transactions():
 
     index = blockchain.new_transaction(
         values['sender'], values['recipient'], values['amount'])
-    response = {'message': 'トランザクションはブロック {} に追加されました'.format(index)}
+    response = {'message': 'Transaction will be added to Block {}'.format(index)}
     return jsonify(response), 201
 
 
@@ -71,7 +71,7 @@ def mine():
     block = blockchain.new_block(proof)
 
     response = {
-        'message': '新しいブロックを採掘しました',
+        'message': 'New Block Forged',
         'index': block['index'],
         'transactions': block['transactions'],
         'proof': block['proof'],
